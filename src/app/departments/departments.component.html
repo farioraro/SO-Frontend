@@ -1,0 +1,12 @@
+<h1>Lista de Departamentos</h1>
+<div *ngIf="departments.length > 0; else noDepartments">
+  <div *ngFor="let department of departments; let i = index" class="department-card">
+    <h3>Departamento {{ i + 1 }}</h3>
+    <p><strong>ID:</strong> {{ department._id }}</p>
+    <p><strong>Nombre:</strong> {{ department.name }}</p>
+    <p><strong>Ubicación:</strong> {{ department.location }}</p>
+  </div>
+</div>
+<ng-template #noDepartments>
+  <p>No hay departamentos disponibles.</p>
+</ng-template>

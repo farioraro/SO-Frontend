@@ -1,0 +1,42 @@
+nav {
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  margin: 1rem auto;
+  max-width: 800px;
+}
+
+nav a {
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #6a11cb;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+nav a:hover {
+  background: #6a11cb;
+  color: #ffffff;
+}
+
+nav a.active {
+  background: #2575fc;
+  color: #ffffff;
+}
+
+.router-outlet-container {
+  background: #ffffff;
+  margin: 1rem auto;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  max-width: 800px;
+  width: 90%;
+  color: #333;
+}
