@@ -1,9 +1,16 @@
 <h1>Lista de Mensajes</h1>
+
+<div class="filter-buttons">
+  <button (click)="showAllMessages()">Todos</button>
+  <button (click)="showReceivedMessages()">Recibidos</button>
+  <button (click)="showSentMessages()">Enviados</button>
+</div>
+
 <div *ngIf="messages.length > 0; else noMessages">
   <div *ngFor="let message of messages; let i = index" class="message-card">
     <h3>Mensaje {{ i + 1 }}</h3>
-    <p><strong>De:</strong> {{ message.senderId }}</p>
-    <p><strong>Para:</strong> {{ message.recipientId }}</p>
+    <p><strong>De:</strong> {{ message.senderEmail }} ({{ message.senderId }})</p>
+    <p><strong>Para:</strong> {{ message.recipientEmail }} ({{ message.recipientId }})</p>
     <p><strong>Contenido:</strong> {{ message.content }}</p>
     <p><strong>Fecha de Envío:</strong> {{ message.sentDate}}</p>
     <p><strong>Fecha de Lectura:</strong> {{ message.readDate ? (message.readDate) : 'No leído' }}</p>

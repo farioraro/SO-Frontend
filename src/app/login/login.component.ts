@@ -22,8 +22,15 @@ export class LoginComponent {
   login() {
     this.http.post('http://localhost:3000/Users/login', { email: this.email, password: this.password })
       .subscribe({
-        next: () => this.router.navigate(['/home']),
-        error: (err) => alert('Credenciales incorrectas'),
+        next: (response: any) => {
+          localStorage.setItem('loggedUserId', response.user._id);
+          alert('inicio de sesión exitoso');
+          this.router.navigate(['/home']);
+        },
+        error: (err) => {
+          console.error('Error al iniciar sesión:', err);
+          alert('Credenciales incorrectas');
+        }
       });
   }
 }

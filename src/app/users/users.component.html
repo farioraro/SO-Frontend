@@ -6,10 +6,22 @@
     <p><strong>Nombre:</strong> {{ user.firstName }} {{ user.lastName }}</p>
     <p><strong>Email:</strong> {{ user.email }}</p>
     <p><strong>Rol:</strong> {{ user.role }}</p>
-    <p><strong>Contraseña:</strong> {{ user.password }}</p>
     <p><strong>Fecha de Creación:</strong> {{ user.creationDate }}</p>
+
+    <button *ngIf="user._id !== loggedUserId" (click)="openMessagePopup(user)">Enviar Mensaje</button>
+
   </div>
 </div>
 <ng-template #noUsers>
   <p>No hay usuarios disponibles.</p>
 </ng-template>
+
+<!-- Modal -->
+<div class="message-modal" *ngIf="showModal">
+  <div class="modal-content">
+    <h2>Escribe tu mensaje</h2>
+    <textarea [(ngModel)]="messageContent" placeholder="Escribe tu mensaje aquí..."></textarea>
+    <button (click)="sendMessage()">Enviar</button>
+    <button (click)="closeModal()">Cancelar</button>
+  </div>
+</div>
