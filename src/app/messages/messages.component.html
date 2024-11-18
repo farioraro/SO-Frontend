@@ -14,6 +14,19 @@
     <p><strong>Contenido:</strong> {{ message.content }}</p>
     <p><strong>Fecha de Envío:</strong> {{ message.sentDate}}</p>
     <p><strong>Fecha de Lectura:</strong> {{ message.readDate ? (message.readDate) : 'No leído' }}</p>
+
+    <div class="action-buttons">
+      <!-- Botón para marcar como leído -->
+      <button
+        *ngIf="message.recipientId === loggedUserId && !message.readDate"
+        class="mark-read-button"
+        (click)="markAsRead(message)">
+        Marcar como leído
+      </button>
+
+      <!-- Botón para eliminar -->
+      <button class="delete-button" (click)="deleteMessage(message)">Eliminar</button>
+    </div>
   </div>
 </div>
 <ng-template #noMessages>

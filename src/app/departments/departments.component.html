@@ -1,12 +1,40 @@
 <h1>Lista de Departamentos</h1>
+
+<!-- Botón para agregar departamento -->
+<div class="add-button-container">
+  <button (click)="openAddDepartmentModal()">Agregar Departamento</button>
+</div>
+
 <div *ngIf="departments.length > 0; else noDepartments">
   <div *ngFor="let department of departments; let i = index" class="department-card">
     <h3>Departamento {{ i + 1 }}</h3>
     <p><strong>ID:</strong> {{ department._id }}</p>
     <p><strong>Nombre:</strong> {{ department.name }}</p>
     <p><strong>Ubicación:</strong> {{ department.location }}</p>
+    <div class="action-buttons">
+      <button class="delete-button" (click)="deleteDepartment(department)">Eliminar</button>
+    </div>
   </div>
 </div>
 <ng-template #noDepartments>
   <p>No hay departamentos disponibles.</p>
 </ng-template>
+
+<!-- Modal para agregar departamento -->
+<div class="modal" *ngIf="showModal">
+  <div class="modal-content">
+    <h2>Ingresa los datos del Departamento</h2>
+    <form (ngSubmit)="addDepartment()">
+      <label for="name">Nombre:</label>
+      <input type="text" id="name" [(ngModel)]="newDepartment.name" name="name" required />
+
+      <label for="location">Ubicación:</label>
+      <input type="text" id="location" [(ngModel)]="newDepartment.location" name="location" required />
+
+      <div class="modal-actions">
+        <button type="submit">Agregar</button>
+        <button type="button" (click)="closeAddDepartmentModal()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>

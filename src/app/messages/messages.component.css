@@ -25,6 +25,7 @@ p strong {
   font-weight: bold;
 }
 
+/* Estilos de los botones de filtrado */
 .filter-buttons {
   text-align: center;
   margin-bottom: 1rem;
@@ -48,4 +49,51 @@ p strong {
 
 .filter-buttons button:active {
   transform: scale(0.98);
+}
+
+/* Botón "Marcar como leído" */
+.message-card .mark-read-button {
+  background: #28a745;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.message-card .mark-read-button:hover {
+  background: #218838;
+}
+
+.message-card .mark-read-button:active {
+  transform: scale(0.98);
+}
+
+/* Botón "Eliminar" */
+.message-card .delete-button {
+  background: #dc3545;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.message-card .delete-button:hover {
+  background: #c82333;
+}
+
+.message-card .delete-button:active {
+  transform: scale(0.98);
+}
+
+/* Contenedor de botones de acción */
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
 }

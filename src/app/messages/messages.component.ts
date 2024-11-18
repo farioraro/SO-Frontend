@@ -72,7 +72,7 @@ export class MessagesComponent implements OnInit {
 
   showAllMessages(): void {
     this.messages = [...this.allMessages];
-    console.log('Mostrando todos los mensajes:', this.messages);
+    console.log('Mostrando todos los mensajes:', this.messages); // Muestra todos los mensajes del usuario
   }
 
   showReceivedMessages(): void {
@@ -85,5 +85,37 @@ export class MessagesComponent implements OnInit {
     this.messages = this.allMessages.filter(
       message => String(message.senderId) === String(this.loggedUserId)
     );
+  }
+
+  markAsRead(message: any): void {
+    const updatedMessage = {
+      ...message,
+      readDate: new Date().toISOString() // Actualizar con la fecha actual
+    };
+
+    this.http.patch(`http://localhost:3000/Messages/${message._id}`, { readDate: updatedMessage.readDate })
+      .subscribe({
+        next: () => {
+          console.log(`Mensaje ${message._id} marcado como leído.`);
+          // Actualizar el mensaje en la lista actual
+          message.readDate = updatedMessage.readDate;
+        },
+        error: (err) => console.error('Error al marcar el mensaje como leído:', err)
+      });
+  }
+
+  deleteMessage(message: any): void {
+    if (confirm('¿Estás seguro de que deseas eliminar este mensaje?')) {
+      this.http.delete(`http://localhost:3000/Messages/${message._id}`)
+        .subscribe({
+          next: () => {
+            console.log(`Mensaje ${message._id} eliminado.`);
+            // Eliminar el mensaje de la lista local
+            this.messages = this.messages.filter(m => m._id !== message._id);
+            this.allMessages = this.allMessages.filter(m => m._id !== message._id);
+          },
+          error: (err) => console.error('Error al eliminar el mensaje:', err)
+        });
+    }
   }
 }
